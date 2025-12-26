@@ -1,4 +1,4 @@
-package com.rv.product_service.Service;
+package com.rv.product_service.Entity;
 import lombok.*;
 
 @Getter

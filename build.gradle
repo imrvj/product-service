@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-docker-compose'
 	testImplementation 'org.springframework.boot:spring-boot-starter-actuator-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -31,4 +32,16 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task dockerCompose(type: Exec) {
+	group = 'docker'
+	description = 'Run docker-compose up'
+	commandLine 'docker-compose', 'up', '--build'
+}
+
+task dockerDown(type: Exec) {
+	group = 'docker'
+	description = 'Run docker-compose down'
+	commandLine 'docker-compose', 'down'
 }

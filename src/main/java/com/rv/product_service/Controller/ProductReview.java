@@ -8,22 +8,19 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Tag(name = "Product Review", description = "Product review management API")
 public interface ProductReview {
 
-    @Operation(
-        summary = "Get product review by product ID",
-        description = "Retrieve product reviews for a specific product"
-    )
-    @ApiResponse(responseCode = "200", description = "Review found")
-    @ApiResponse(responseCode = "404", description = "Review not found")
-    @GetMapping(value = "/review/{productId}", produces = "application/json")
+    @GetMapping(value = "/review/{reviewId}", produces = "application/json")
     ProductReviewEntity getReview(
-        @Parameter(description = "Product ID to get reviews for", required = true)
-        @PathVariable int productId
+        @PathVariable int reviewId
     );
 
-    @DeleteMapping(value = "/delete/{productId}", produces = "application/json")
-    ProductReviewEntity deleteReview(@PathVariable int productId);
+    @PostMapping(value = "/insertReview/{reviewId}", produces = "application/json")
+    ProductReviewEntity addReview  (@PathVariable int reviewId);
+
+    @DeleteMapping(value = "/deleteReview/{reviewId}", produces = "application/json")
+    ProductReviewEntity deleteReview(@PathVariable int reviewId);
 }

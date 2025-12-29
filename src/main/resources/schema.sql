@@ -4,3 +4,10 @@ CREATE TABLE IF NOT EXISTS product_entity (
     weight INT,
     expiry VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS product_review_entity (
+    product_id INT PRIMARY KEY,
+    author VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    content VARCHAR(255)
+);

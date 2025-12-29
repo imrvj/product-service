@@ -36,11 +36,13 @@ tasks.named('test') {
 task dockerCompose(type: Exec) {
 	group = 'docker'
 	description = 'Run docker-compose up'
+	workingDir 'src/main/resources'
 	commandLine 'docker-compose', 'up', '--build'
 }
 
 task dockerDown(type: Exec) {
 	group = 'docker'
 	description = 'Run docker-compose down'
+	workingDir 'src/main/resources'
 	commandLine 'docker-compose', 'down'
 }

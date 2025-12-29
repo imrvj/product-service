@@ -19,7 +19,7 @@ public class ProductReviewImpl implements ProductReview {
         if (productId>5000 ){
             throw new NotFoundException("No product found for productId: " + productId);
         }
-        else if (productId<5)
+        else if (productId<500)
         {
             ProductEntity product = new ProductEntity(productId, "Product " + productId, 100, "2024-12-31");
             productRepository.save(product);
@@ -35,7 +35,10 @@ public class ProductReviewImpl implements ProductReview {
 
     @Override
     public ProductReviewEntity deleteReview(int productId) {
-        productRepository.deleteById(productId);
-        return null;
+        if (productRepository.findById(productId).isPresent()) {
+            productRepository.deleteById(productId);
+            return new ProductReviewEntity(productId, "RV", "Content Deleted", "Nothing Left");
+        } else
+            return new ProductReviewEntity(productId, "RV", "Content Not Found Deleted", "Nothing Left to delete");
     }
 }

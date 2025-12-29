@@ -17,7 +17,7 @@ public class ProductReviewEntity {
 
     @Id
     @Column(name = "product_id")
-    private  int reviewId;
+    private int reviewId;
     @Column(name = "author")
     private String author;
     @Column(name = "description")

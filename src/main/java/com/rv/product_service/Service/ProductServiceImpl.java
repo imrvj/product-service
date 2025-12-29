@@ -2,14 +2,11 @@ package com.rv.product_service.Service;
 
 import com.rv.product_service.Controller.Product;
 import com.rv.product_service.Entity.ProductEntity;
-import com.rv.product_service.Entity.ProductReviewEntity;
 import com.rv.product_service.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.util.Random;
 import java.util.random.RandomGenerator;
 
 @RestController
@@ -39,7 +36,7 @@ public class ProductServiceImpl implements Product {
     public ProductEntity insertProduct(int productId) {
         ProductEntity product = new ProductEntity(productId, "Product " + productId, RandomGenerator.getDefault().nextInt(), LocalDateTime.now());
         productRepository.save(product);
-        return new ProductEntity(productId,"Product",100,LocalDateTime.now());
+        return new ProductEntity(productId, "Product", 100, LocalDateTime.now());
     }
 
     @Override

@@ -23,6 +23,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'org.postgresql:postgresql'
+	testRuntimeOnly 'com.h2database:h2'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -37,6 +38,7 @@ tasks.named('test') {
 task dockerCompose(type: Exec) {
 	group = 'docker'
 	description = 'Run docker-compose up'
+	dependsOn 'build'
 	workingDir 'src/main/resources'
 	commandLine 'docker-compose', 'up', '--build'
 }

@@ -1,6 +1,5 @@
 package com.rv.product_service.Exception;
 
-import io.netty.handler.codec.http2.Http2Error;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

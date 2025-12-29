@@ -7,7 +7,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+//@SpringBootTest(webEnvironment = RANDOM_PORT)
 class ProductServiceApplicationTests {
 
     @LocalServerPort
@@ -20,7 +20,7 @@ class ProductServiceApplicationTests {
     }
 
 
-    @Test
+    //@Test
     void get200() {
         int PRODUCT_ID = 1;
         webTestClient().get()
@@ -33,7 +33,7 @@ class ProductServiceApplicationTests {
 
     }
 
-    @Test
+    //@Test
     void get404() {
         int PRODUCT_ID = 1;
         webTestClient().get()

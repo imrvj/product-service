@@ -11,3 +11,9 @@ CREATE TABLE IF NOT EXISTS product_review_entity (
     description VARCHAR(255),
     content VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS user_details (
+    user_id INT PRIMARY KEY,
+    description VARCHAR(255),
+    content VARCHAR(255)
+);

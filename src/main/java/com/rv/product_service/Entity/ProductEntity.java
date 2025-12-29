@@ -2,6 +2,8 @@ package com.rv.product_service.Entity;
 import lombok.*;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "product_entity")
 @Getter
@@ -19,5 +21,5 @@ public class ProductEntity {
     private int weight;
     
     @Column(name = "expiry")
-    private String expiry;
+    private LocalDateTime expiry;
 }

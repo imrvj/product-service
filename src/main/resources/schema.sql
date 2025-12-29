@@ -17,3 +17,10 @@ CREATE TABLE IF NOT EXISTS user_details (
     description VARCHAR(255),
     content VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS postman_details (
+    token VARCHAR(255) PRIMARY KEY,
+    hostpostman VARCHAR(255),
+    cookiepostman VARCHAR(255),
+    urlpostman VARCHAR(255)
+);

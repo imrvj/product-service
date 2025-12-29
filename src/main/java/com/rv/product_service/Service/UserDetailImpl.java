@@ -1,9 +1,13 @@
 package com.rv.product_service.Service;
 
 import com.rv.product_service.Controller.UserDetails;
+import com.rv.product_service.Entity.PostmanEntity;
 import com.rv.product_service.Entity.UserDetailsEntity;
+import com.rv.product_service.Repository.PostmanRepository;
 import com.rv.product_service.Repository.UserDetailsRepository;
 import com.rv.product_service.dto.ExternalUserDto;
+import com.rv.product_service.dto.PostmanDto;
+import com.rv.product_service.mapper.PostmanMapper;
 import com.rv.product_service.mapper.UserDetailsMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,9 @@ public class UserDetailImpl implements UserDetails {
     
     @Autowired
     private UserDetailsRepository userDetailsRepository;
+
+    @Autowired
+    private PostmanRepository postmanRepository;
     
     @Override
     public UserDetailsEntity getUser(int userId) {
@@ -36,6 +43,32 @@ public class UserDetailImpl implements UserDetails {
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             return new UserDetailsEntity(userId, "Error", "Failed to fetch data");
+        }
+    }
+
+    @Override
+    public PostmanEntity getPostman() {
+        RestTemplate restTemplate = new RestTemplate();
+        String externalUrl = "https://postman-echo.com/get" ;
+
+        try{
+            PostmanDto postmanDto = restTemplate.getForObject(externalUrl, PostmanDto.class);
+
+            PostmanEntity postmanEntity = PostmanMapper.INSTANCE.postmanDtoToEntity(postmanDto);
+            
+            // Ensure token is not null for database save
+            if (postmanEntity.getToken() == null || postmanEntity.getToken().isEmpty()) {
+                postmanEntity.setToken("default-token-" + System.currentTimeMillis());
+            }
+
+            postmanRepository.save(postmanEntity);
+
+            return postmanEntity;
+
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            return new PostmanEntity("","error-token","","");
         }
     }
 }
